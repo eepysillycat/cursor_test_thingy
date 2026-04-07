@@ -8,7 +8,7 @@ use winit::{
     event_loop::{ActiveEventLoop, EventLoop},
     keyboard::KeyCode,
     platform::wayland::WindowAttributesExtWayland,
-    window::{Cursor, CursorIcon, Window, WindowAttributes, WindowId},
+    window::{Cursor, CursorIcon, Fullscreen, Window, WindowAttributes, WindowId},
 };
 
 use crate::graphics::Graphics;
@@ -33,7 +33,9 @@ impl App {
 
 impl ApplicationHandler for App {
     fn resumed(&mut self, event_loop: &ActiveEventLoop) {
-        let attrs = WindowAttributes::default().with_name("meowmeow_test", "");
+        let attrs = WindowAttributes::default()
+            .with_name("meowmeow_test", "")
+            .with_fullscreen(Some(Fullscreen::Borderless(None)));
 
         let window = Arc::new(
             event_loop
